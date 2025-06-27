@@ -70,7 +70,7 @@ const UserUI = () => {
     
     chapters.forEach(chapter => {
       const key = chapter.title.toLowerCase();
-      if (!chapterGroups[key] || chapter.rating > chapterGroups[key].rating) {
+      if (!chapterGroups[key] || (chapter.rating && chapter.rating > (chapterGroups[key].rating || 0))) {
         chapterGroups[key] = chapter;
       }
     });
@@ -122,6 +122,7 @@ const UserUI = () => {
       const data = snapshot.val();
       if (data) {
         const publishedChapters = Object.entries(data)
+          // FIXED: Only show chapters with status "published"
           .filter(([_, ch]) => ch.status === "published")
           .map(([id, ch]) => ({
             id,
@@ -129,7 +130,8 @@ const UserUI = () => {
             finalContent: ch.finalVersion || ch.writerText || ch.ai_version || "",
             originalContent: ch.content || "",
             iterations: ch.iterations || 3,
-            rating: ch.rating || Math.floor(Math.random() * 2) + 4, // 4-5 rating
+            // FIXED: Only show rating if it actually exists in Firebase
+            rating: ch.rating || null,
             status: ch.status,
             lastModified: ch.timestamp || new Date().toISOString(),
             bookName: extractBookName(ch.chapter || ch.book || ch.title || "Untitled Chapter")
@@ -211,7 +213,8 @@ const UserUI = () => {
         finalContent: data.ai_version || "No AI version available",
         humanFeedback: "",
         iterations: iterations,
-        rating: Math.floor(Math.random() * 2) + 4, // Random rating 4-5
+        // FIXED: Don't assign random rating - let it be null
+        rating: null,
         lastModified: new Date().toISOString(),
         bookName: extractBookName(data.title || "Untitled Chapter")
       };
@@ -268,6 +271,7 @@ const UserUI = () => {
   };
 
   const getRatingColor = (rating) => {
+    if (!rating) return 'text-gray-400';
     if (rating >= 5) return 'text-emerald-400';
     if (rating >= 4) return 'text-yellow-400';
     if (rating >= 3) return 'text-orange-400';
@@ -375,7 +379,7 @@ const UserUI = () => {
             ))}
           </div>
 
-                      <div className="max-w-4xl mx-auto mb-8">
+          <div className="max-w-4xl mx-auto mb-8">
             <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-4 mb-4">
               <h3 className="text-cyan-400 font-medium mb-2">⚙️ API Configuration</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -512,12 +516,15 @@ const UserUI = () => {
                               </div>
                               <h3 className="font-medium text-sm truncate">{chapter.title}</h3>
                             </div>
-                            <div className="flex items-center space-x-1 ml-2">
-                              <Star className={`w-4 h-4 ${getRatingColor(chapter.rating)}`} />
-                              <span className={`text-xs font-medium ${getRatingColor(chapter.rating)}`}>
-                                {chapter.rating}/5
-                              </span>
-                            </div>
+                            {/* FIXED: Only show rating if it exists */}
+                            {chapter.rating && (
+                              <div className="flex items-center space-x-1 ml-2">
+                                <Star className={`w-4 h-4 ${getRatingColor(chapter.rating)}`} />
+                                <span className={`text-xs font-medium ${getRatingColor(chapter.rating)}`}>
+                                  {chapter.rating}/5
+                                </span>
+                              </div>
+                            )}
                           </div>
                           <div className="flex items-center justify-between text-xs text-gray-400">
                             <span className="flex items-center">
@@ -546,12 +553,15 @@ const UserUI = () => {
                   </h2>
                   {selectedChapter && (
                     <div className="flex items-center space-x-2">
-                      <div className="flex items-center space-x-1">
-                        <Star className={`w-5 h-5 ${getRatingColor(selectedChapter.rating)}`} />
-                        <span className={`font-medium ${getRatingColor(selectedChapter.rating)}`}>
-                          {selectedChapter.rating}/5
-                        </span>
-                      </div>
+                      {/* FIXED: Only show rating if it exists */}
+                      {selectedChapter.rating && (
+                        <div className="flex items-center space-x-1">
+                          <Star className={`w-5 h-5 ${getRatingColor(selectedChapter.rating)}`} />
+                          <span className={`font-medium ${getRatingColor(selectedChapter.rating)}`}>
+                            {selectedChapter.rating}/5
+                          </span>
+                        </div>
+                      )}
                       <div className="text-sm text-gray-400">
                       </div>
                     </div>
