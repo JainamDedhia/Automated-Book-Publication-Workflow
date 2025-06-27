@@ -1,51 +1,71 @@
 # 📘 Automated Book Publication Workflow
 
-**A working prototype** for an end-to-end automated publishing pipeline—built with Python, React, Playwright, Mistral LLMs, and Firebase.
+**A fully automated prototype** that transforms web-based book chapters into refined, version-controlled content using Python, React, Playwright, Mistral LLMs, and Firebase.
 
 ---
 
-## 🚀 Overview
-
-This project automates the process of turning web content into refined, versioned chapters:
-
-1. **Playwright + BeautifulSoup**: Scrapes chapter content from a web URL and captures a screenshot.  
-2. **Mistral LLM via Ollama**: Performs an "AI Writer" pass to paraphrase, followed by an "AI Reviewer" pass for refinement.  
-3. **Human-in-the-Loop**: Enables human edits/comments at every stage via interactive pipeline hooks.  
-4. **Firebase Firestore**: Stores every version with metadata (timestamp, stage, reviewer).  
-5. **React Front‑end**: (Optional/demo) Visualizes scraped content, AI outputs, and version history.
-
----
-
-## 🎥 Demo Video
-
-Watch the full project walkthrough here:
-
-➡️ **[YouTube Demo Video]([YOUR_YOUTUBE_LINK_HERE](https://www.youtube.com/watch?v=DaUfTYX7nqQ))**
+## 🧭 Table of Contents
+- [About the Project](#about-the-project)  
+- [Demo](#demo)  
+- [Built With](#built-with)  
+- [Getting Started](#getting-started)  
+- [Usage](#usage)  
+- [Project Structure](#project-structure)  
+- [Roadmap](#roadmap)  
+- [Contact](#contact)  
+- [License](#license)
 
 ---
 
-## 🛠️ Project Setup
+## 📝 About the Project
 
-### Requirements
+An **Automated Book Publication Workflow** prototype that:
+- Scrapes chapters from a web URL (e.g., Wikisource) using Playwright + BeautifulSoup
+- Captures full-page screenshots and exports text as JSON
+- Applies AI-powered rewriting ("AI Writer") and refinement ("AI Reviewer") with the Mistral model (via Ollama)
+- Enables **human-in-the-loop** editing at each stage
+- Stores versions and metadata in **Firebase Firestore** for traceable content retrieval
+
+This project demonstrates a modular, end-to-end pipeline optimized for scalability and collaboration.
+
+---
+
+## 🎥 Demo
+
+Watch the full walkthrough:
+
+[Automated Book Publication Workflow Demo by Jainam Dedhia](https://github.com/othneildrew/Best-README-Template?utm_source=chatgpt.com)
+
+
+---
+
+## 🛠️ Built With
+
+- **Python** – Core scripting
+- **React** – Front-end visualization (optional)
+- **Playwright & BeautifulSoup** – Web scraping and screenshots
+- **Ollama / Mistral LLM** – AI-driven content spinning and review
+- **Firebase Firestore** – Versioning and metadata storage
+
+---
+
+## 🏁 Getting Started
+
+### Prerequisites
 - Python 3.9+
 - Node.js (for React UI)
-- Google account (for Firebase)
-- [Ollama](https://ollama.ai) with Mistral model
+- Google account for Firebase
+- [Ollama](https://ollama.ai) installed with Mistral model
 
-### Getting Started
+### Setup
 
 ```bash
 git clone https://github.com/JainamDedhia/Automated-Book-Publication-Workflow.git
 cd Automated-Book-Publication-Workflow
 
-# Python & dependencies
+# Install dependencies
 pip install -r requirements.txt
+npm install --prefix ui
 
-# Start Ollama Mistral model
+# Launch Ollama LLM service
 ollama run mistral
-
-# Run the scraper + AI pipeline
-python pipeline.py
-
-# (Optional) React UI setup
-cd ui && npm install && npm start
