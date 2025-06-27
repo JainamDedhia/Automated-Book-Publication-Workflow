@@ -34,7 +34,7 @@ This project demonstrates a modular, end-to-end pipeline optimized for scalabili
 
 Watch the full walkthrough:
 
-[Automated Book Publication Workflow Demo by Jainam Dedhia]([https://github.com/othneildrew/Best-README-Template?utm_source=chatgpt.com](https://www.youtube.com/watch?v=DaUfTYX7nqQ))
+[Automated Book Publication Workflow Demo by Jainam Dedhia](https://github.com/othneildrew/Best-README-Template?utm_source=chatgpt.com)
 
 
 ---
@@ -69,3 +69,62 @@ npm install --prefix ui
 
 # Launch Ollama LLM service
 ollama run mistral
+🚀 Usage
+Scrape & Screenshot
+
+bash
+Copy
+Edit
+python scrape_chapter.py
+AI Spin & Review
+
+bash
+Copy
+Edit
+python ai_writer.py
+python ai_reviewer.py
+Human Review & Firebase Storage
+
+bash
+Copy
+Edit
+python pipeline.py
+(Optional) React UI
+
+bash
+Copy
+Edit
+npm start --prefix ui
+📁 Project Structure
+bash
+Copy
+Edit
+.
+├── scrape_chapter.py     # Fetches chapter & screenshot
+├── ai_writer.py          # AI paraphrasing step
+├── ai_reviewer.py        # AI refinement step
+├── pipeline.py           # Orchestrates pipeline & Firebase save
+├── firebase_client.py    # Firestore interactions
+├── ui/                   # Optional React front-end
+└── requirements.txt
+🎯 Roadmap
+✅ Modularize pipeline components
+
+🔜 Build a collaborative UI for inline human editing
+
+🔜 Enhance version retrieval with filters (metadata, quality scores)
+
+🔜 Extend to multi-chapter workflows with parallel processing
+
+🔜 Integrate reinforcement-learning retrieval logic
+
+📬 Contact
+Jainam Dedhia
+
+🔗 LinkedIn
+
+🗃️ GitHub
+
+📄 License
+Released under the MIT License. See LICENSE for details.
+
