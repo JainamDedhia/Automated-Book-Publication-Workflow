@@ -58,4 +58,3 @@
 
 - 🔗 [LinkedIn](https://www.linkedin.com/in/jainam-dedhia-18a056273/)  
 
-Thank you for reviewing this submission for the Soft‑Nerve internship. Open to feedback, next-step discussions, and collaborative growth! 😊
