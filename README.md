@@ -34,7 +34,7 @@ This project demonstrates a modular, end-to-end pipeline optimized for scalabili
 
 Watch the full walkthrough:
 
-[Automated Book Publication Workflow Demo by Jainam Dedhia](https://github.com/othneildrew/Best-README-Template?utm_source=chatgpt.com)
+[Automated Book Publication Workflow Demo by Jainam Dedhia]([https://github.com/othneildrew/Best-README-Template?utm_source=chatgpt.com](https://www.youtube.com/watch?v=DaUfTYX7nqQ))
 
 
 ---
